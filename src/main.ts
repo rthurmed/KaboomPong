@@ -1,8 +1,9 @@
 import kaboom from "kaboom"
 import { makeBall } from "./ball"
-import { makePad, PAD_TAG, PAD_OUTLINE, configurePad } from "./pad"
+import { makePad, PAD_TAG, PAD_OUTLINE, configurePad, PAD_WIDTH } from "./pad"
 
 const WALL_SIZE = 50
+const WALL_BORDER = PAD_WIDTH
 const BACKWALL_TAG = "backwall"
 const SIDEWALL_TAG = "sidewall"
 const PAD_SPEED = 6
@@ -30,25 +31,25 @@ const wallProperties = [
 ]
 const walls = [
   add([
-    pos(0, -WALL_SIZE),
+    pos(0, - WALL_SIZE + WALL_BORDER),
     rect(width(), WALL_SIZE),
     SIDEWALL_TAG,
     ...wallProperties
   ]),
   add([
-    pos(0, height()),
+    pos(0, height() - WALL_BORDER),
     rect(width(), WALL_SIZE),
     SIDEWALL_TAG,
     ...wallProperties
   ]),
   add([
-    pos(-WALL_SIZE, -WALL_SIZE),
+    pos(-WALL_SIZE + WALL_BORDER, -WALL_SIZE),
     rect(WALL_SIZE, height() + WALL_SIZE * 2),
     BACKWALL_TAG,
     ...wallProperties
   ]),
   add([
-    pos(width(), -WALL_SIZE),
+    pos(width() - WALL_BORDER, -WALL_SIZE),
     rect(WALL_SIZE, height() + WALL_SIZE * 2),
     BACKWALL_TAG,
     ...wallProperties
