@@ -19,7 +19,7 @@ export const makeBall = ({ defaultSpeed = 6 } = {}) => ([
     direction: vec2(),
     reset () {
       this.pos = center()
-      this.direction = vec2(rand(0.1, 1), rand(0.1, 1))
+      this.direction = vec2(rand(0.5, 1), rand(0.1, 1))
       this.speed = defaultSpeed
     }
   }
