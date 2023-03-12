@@ -32,6 +32,26 @@ const backgroundLogo = add([
   origin("center")
 ])
 
+// SCORE
+const score = {
+  left: 0,
+  right: 0
+}
+
+const scoreLabelLeft = add([
+  text("0"),
+  pos(center().x - (width() / 4), WALL_BORDER),
+  origin("top"),
+  opacity(0.5)
+])
+
+const scoreLabelRight = add([
+  text("0"),
+  pos(center().x + (width() / 4), WALL_BORDER),
+  origin("top"),
+  opacity(0.5)
+])
+
 // BORDERS
 const wallProperties = [
   opacity(0),
@@ -67,11 +87,6 @@ const walls = [
 
 // ELEMENTS
 // PADS
-const score = {
-  left: 0,
-  right: 0
-}
-
 const padLeft = add(makePad())
 const padRight = add(makePad({ right: true }))
 
@@ -102,6 +117,8 @@ ball.onCollide(BACKWALL_TAG, () => {
   } else {
     score.left += 1
   }
+  scoreLabelLeft.text = score.left.toString()
+  scoreLabelRight.text = score.right.toString()
   burp()
   ball.reset()
 })
