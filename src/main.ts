@@ -75,13 +75,19 @@ const walls = [
     pos(-WALL_SIZE + WALL_BORDER, -WALL_SIZE),
     rect(WALL_SIZE, height() + WALL_SIZE * 2),
     BACKWALL_TAG,
-    ...wallProperties
+    ...wallProperties,
+    {
+      left: true
+    }
   ]),
   add([
     pos(width() - WALL_BORDER, -WALL_SIZE),
     rect(WALL_SIZE, height() + WALL_SIZE * 2),
     BACKWALL_TAG,
-    ...wallProperties
+    ...wallProperties,
+    {
+      left: false
+    }
   ])
 ]
 
@@ -111,8 +117,8 @@ ball.onCollide(SIDEWALL_TAG, () => {
   ball.direction = ball.direction.scale(vec2(1, -1))
 })
 
-ball.onCollide(BACKWALL_TAG, () => {
-  if (ball.direction.y < 0) {
+ball.onCollide(BACKWALL_TAG, (wall) => {
+  if (wall.left) {
     score.right += 1
   } else {
     score.left += 1
