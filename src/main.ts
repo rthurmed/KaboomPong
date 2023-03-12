@@ -15,12 +15,21 @@ const kaboomInstance = kaboom({
   height: 600
 })
 
+loadSprite("bean", "sprites/bean.png")
+
 // debug.inspect = true
 // camScale(vec2(.5, .5))
 
 const background = add([
   rect(width(), height()),
   color(57, 133, 90)
+])
+
+const backgroundLogo = add([
+  sprite("bean"),
+  opacity(0.5),
+  pos(center()),
+  origin("center")
 ])
 
 // BORDERS
